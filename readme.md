@@ -118,3 +118,30 @@ Make changes to the request and the response objects.
 End the request-response cycle.  
 Call the next middleware in the stack.  
 
+
+process.env
+process对象是全局变量，它提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()。
+既然process都是一个对象了，env自然是它的一个属性，这个属性返回包含用户环境信息的对象。在终端输入node后，在输入process.env可以看到打印出来的信息。
+
+NODE_ENV不是process.env对象上原有的属性，它是我们自己添加上去的一个环境变量，用来确定当前所处的开发阶段。一般生产阶段设为production，开发阶段设为develop，然后在脚本中读取process.env.NODE_ENV。
+运行脚本时，可以这样改变环境变量, 在package.json文件的scripts里面添加命令：
+NODE_ENV=production node build.js
+
+Async/Await
+放在一个函数前的async有两个作用：
+1.使函数总是返回一个promise
+2.允许在这其中使用await
+
+promise前面的await关键字能够使JavaScript等待，直到promise处理结束。然后：
+1.如果它是一个错误，异常就产生了，就像在那个地方调用了throw error一样。
+2.否则，它会返回一个结果，我们可以将它分配给一个值
+
+他们一起提供了一个很好的框架来编写易于读写的异步代码。
+
+有了async/await，我们很少需要写promise.then/catch，但是我们仍然不应该忘记它们是基于promise的，因为有些时候（例如在最外面的范围内）我们不得不使用这些方法。Promise.all也是一个非常棒的东西，它能够同时等待很多任务。
+
+
+PM2
+PM2 is a Production Process Manager for Node.js applications with a built-in Load Balancer.
+主要功能:进程守护,在线日志,多进程.
+
